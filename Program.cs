@@ -7,6 +7,7 @@ using Statiq.Common;
 using Microsoft.Extensions.Configuration;
 using Statiq.Web;
 using Kentico.Kontent.Statiq.Memoirs.Models;
+using MemoirsTheme.Resolvers;
 
 namespace MemoirsTheme
 {
@@ -18,7 +19,13 @@ namespace MemoirsTheme
                 .CreateDefault(args)
                 .ConfigureServices((services, settings) =>
                 {
+                    // pull in site settings from configuration
+                    var siteSettings = (settings as IConfiguration).GetSection("Site").Get<SiteSettings>();
+                    services.AddSingleton(siteSettings);
+
                     services.AddSingleton<ITypeProvider, CustomTypeProvider>();
+                    services.AddDeliveryInlineContentItemsResolver(new CodeSnippetResolver());
+                    services.AddDeliveryInlineContentItemsResolver(new GitHubGistResolver());
                     services.AddDeliveryClient((IConfiguration)settings);
                 })
                 .AddHostingCommands()

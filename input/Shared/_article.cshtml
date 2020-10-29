@@ -2,7 +2,7 @@
 ================================================== -->
 <div class="article-post">
     <!-- Toc if any -->
-    {% if page.toc %}
+    @*{% if page.toc %}
     {% if page.beforetoc %}
         <p><em>{{page.beforetoc}}</em></p>
     {% endif %}
@@ -10,7 +10,7 @@
         <h3 class="font-weight-bold">Summary</h3>
         {% include toc.html html=content %}
     </div>
-    {% endif %}
+    {% endif %}*@
     <!-- End Toc -->
     {{content}}
 </div>

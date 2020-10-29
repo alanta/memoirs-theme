@@ -4,8 +4,7 @@ using Kentico.Kontent.Delivery.Abstractions;
 
 namespace Kentico.Kontent.Statiq.Memoirs.Models
 {
-    public partial class Post: IPageMetadata
+    public partial class Author
     {
-        public string Url => $"{PostDate.Value.Year}/{PostDate.Value.Month:00}/{UrlPattern}.html";
     }
 }

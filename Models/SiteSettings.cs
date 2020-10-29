@@ -1,0 +1,12 @@
+namespace Kentico.Kontent.Statiq.Memoirs.Models{
+    public class SiteSettings{
+        public string Name {get; set;}
+        public string Title {get; set;}
+        public string Description {get; set;}
+        public string Logo {get; set;}
+        public string Favicon {get; set;}
+        public bool LazyImages { get; set; }
+        public bool ImageShadow { get; set; }
+        public string Copyright { get; set; }
+    }
+}
