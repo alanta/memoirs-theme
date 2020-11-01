@@ -3,7 +3,7 @@
 @{ var site = ViewBag.SiteMetadata as SiteSettings;
     var author = ViewBag.Author as Author;
     var name = author?.Name ?? "John Doe";
-    var isHome = false; }
+    var isHome = ViewBag.IsHome ?? false; }
 <!DOCTYPE html>
 <html lang="en">
 <head>

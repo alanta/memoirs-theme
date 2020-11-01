@@ -1,5 +1,4 @@
-﻿
-namespace Kentico.Kontent.Statiq.Memoirs.Models
+﻿namespace Kentico.Kontent.Statiq.Memoirs.Models
 {
     public class PostViewModel
     {

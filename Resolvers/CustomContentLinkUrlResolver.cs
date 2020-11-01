@@ -7,7 +7,6 @@ namespace MemoirsTheme.Resolvers
     {
         public Task<string> ResolveLinkUrlAsync(IContentLink link)
         {
-            // Resolves URLs to content items based on the 'accessory' content type
             var result = link.ContentTypeCodename switch
             {
                 "post" => $"{link.UrlSlug}",

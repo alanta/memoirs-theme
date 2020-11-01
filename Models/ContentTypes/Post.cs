@@ -6,6 +6,8 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
 {
     public partial class Post: IPageMetadata
     {
-        public string Url => $"{PostDate.Value.Year}/{PostDate.Value.Month:00}/{UrlPattern}.html";
+        public string Url => $"post/{PostDate.Value.Year}/{PostDate.Value.Month:00}/{UrlPattern}.html";
+
+        public int? Rating = null; // TODO : ratings
     }
 }

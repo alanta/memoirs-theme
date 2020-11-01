@@ -40,7 +40,7 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                     // Add some extra metadata to be used later for creating filenames
                     return doc.AsKontent<Article>().TagObjects;
                 })),*/
-                new SetDestination(Config.FromDocument((doc, ctx)  => new NormalizedPath($"posts/{doc.AsKontent<Post>().Url}" ))),
+                new SetDestination(Config.FromDocument((doc, ctx)  => new NormalizedPath(doc.AsKontent<Post>().Url ))),
                 new SetMetadata(SearchIndex.SearchItemKey, Config.FromDocument((doc,ctx)=>
                 {
                     var post = doc.AsKontent<Post>();
@@ -55,7 +55,7 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
             ProcessModules = new ModuleList {
                 new MergeContent(new ReadFiles(patterns: "Post.cshtml") ),
                 new RenderRazor()
-                 .WithModel(Config.FromDocument((document, context) =>
+                    .WithModel(Config.FromDocument((document, context) =>
                  new PostViewModel(document.AsKontent<Post>(),
                                context.Outputs.FromPipeline(nameof(Authors)).Select(x => x.AsKontent<Author>()).FirstOrDefault(),
                                site

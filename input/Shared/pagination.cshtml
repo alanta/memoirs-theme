@@ -1,0 +1,29 @@
+@model MemoirsTheme.Models.IPagedContent
+@if (Model.TotalItems > 1)
+{
+    <div class="pagination">
+        @if (Model.PreviousUrl != null)
+        {
+            <a class="ml-1 mr-1" href="@Model.PreviousUrl">&laquo; </a>
+        }
+        else
+        {
+        <span>&laquo; </span>
+        }
+
+        @for( var index=1; index <= Model.TotalPages; index++){
+            if( index == Model.Index ){
+            <span class="ml-1 mr-1">@(index.ToString())</span>
+            }
+            else {
+                <a class="ml-1 mr-1" href="@Model.PagingUrl(index)">@index</a>
+            }
+        }
+
+        @if(Model.NextUrl != null){
+        <a class="ml-1 mr-1" href="@Model.NextUrl"> &raquo;</a>
+        }else{
+        <span> &raquo;</span>
+        }
+    </div>
+}

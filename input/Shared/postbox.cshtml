@@ -1,0 +1,53 @@
+@using Kentico.Kontent.ImageTransformation
+@using Kentico.Kontent.Statiq.Memoirs.Models
+@using MemoirsTheme.Helpers
+@model Kentico.Kontent.Statiq.Memoirs.Models.Post
+@{ var site = ViewData["SiteMetadata"] as SiteSettings;
+    Author author = null; // todo 
+}
+
+<div class="blog-grid-item">
+    <div class="card h-100">
+        <div class="maxthumb">
+            <a href="@Model.Url">
+                @Html.Image(Model.TeaserImage, Model.Title, site.LazyImages, 580, 400, ImageFitMode.Crop, new { @class = "img-thumb" })
+            </a>
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">
+                <a class="text-dark" href="@Model.Url">@Model.Title</a>
+                @if (Model.Rating.HasValue)
+                {
+    <div class="mb-2 mt-2 font-weight-normal">
+        @{ await Html.RenderPartialAsync("star_rating_postbox", Model);}
+    </div>}
+            </h2>
+            <h4 class="card-text">@Model.MetadataMetaDescription.GetMaxWords(30)</h4>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="wrapfooter">
+                @if (author != null)
+                {
+    <span class="meta-footer-thumb">
+        @if (author?.AvatarImage != null)
+        {
+            @Html.Image(author.AvatarImage, author.Name, site.LazyImages, 580, 400, ImageFitMode.Crop, new { @class = "img-thumb" })
+        }
+        else
+        {
+             @*<img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">*@
+        }
+    </span>
+                    <span class="author-meta">
+                        @* TODO : author detail page*@
+                        <span class="post-name"><a target="_blank" href="">@author.Name</a></span>
+                    </span>}
+
+                <span class="post-date">@Model.PostDate?.ToString("dd MMMM yyyy")</span>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end post -->
