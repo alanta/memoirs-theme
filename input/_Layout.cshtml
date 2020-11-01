@@ -1,10 +1,9 @@
 ﻿@using Kentico.Kontent.Statiq.Memoirs.Models
 @using Statiq.Common
 @{ var site = ViewBag.SiteMetadata as SiteSettings;
-var author = ViewBag.Author as Author;
-var name = author?.Name ?? "John Doe";
-var isHome = false;
-}
+    var author = ViewBag.Author as Author;
+    var name = author?.Name ?? "John Doe";
+    var isHome = false; }
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,8 +63,7 @@ var isHome = false;
         </ul>
     </nav>
 
-    @*{% include search-lunr.html %}*@
-
+    @await Html.PartialAsync("search-lunr")
 
     <!-- End Sidebar Navigation
     ================================================== -->
@@ -84,11 +82,11 @@ var isHome = false;
 
             <!-- Site Tag
             ================================================== -->
-            @if( isHome ){
-            <p class="sitetag">
-                @site.Description
-            </p>
-            }
+            @if (isHome)
+            {
+<p class="sitetag">
+    @site.Description
+</p>            }
 
             <!-- Content
             ================================================== -->
@@ -139,12 +137,12 @@ var isHome = false;
 
     @if (site.LazyImages)
     {
-        <script src="@IExecutionContext.Current.GetLink("/assets/js/lazyload.js")"></script>
-    }
+<script src="@IExecutionContext.Current.GetLink("/assets/js/lazyload.js")"></script>}
 
     @if (ViewBag.Layout == "post")
     {
-<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>}
+<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
+}
 
 </body>
 </html>

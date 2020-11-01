@@ -1,4 +1,5 @@
-<script src="{{site.baseurl}}/assets/js/lunr.js"></script>
+@using Statiq.Common
+<script src="@IExecutionContext.Current.GetLink("/assets/js/lunr.js")"></script>
 
 <style>
     
@@ -17,4 +18,4 @@
     <ul></ul>
 </div>
 
-<script src="{{site.baseurl}}/assets/js/lunrsearchengine.js"></script>
+<script src="@IExecutionContext.Current.GetLink("/assets/js/lunrsearchengine.js")"></script>

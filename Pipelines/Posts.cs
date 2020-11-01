@@ -2,9 +2,11 @@ using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
+using MemoirsTheme.Pipelines;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
+using Statiq.SearchIndex;
 using System.Linq;
 
 namespace Kentico.Kontent.Statiq.Lumen.Pipelines
@@ -39,6 +41,15 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                     return doc.AsKontent<Article>().TagObjects;
                 })),*/
                 new SetDestination(Config.FromDocument((doc, ctx)  => new NormalizedPath($"posts/{doc.AsKontent<Post>().Url}" ))),
+                new SetMetadata(SearchIndex.SearchItemKey, Config.FromDocument((doc,ctx)=>
+                {
+                    var post = doc.AsKontent<Post>();
+                    return new LunrIndexDocItem(doc, post.Title, post.Body)
+                    {
+                        Description = post.MetadataMetaDescription,
+                        Tags = string.Join(", ", post.Tags.Select( t => t.Name ))
+                    };
+                })),
             };
 
             ProcessModules = new ModuleList {
