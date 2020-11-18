@@ -4,7 +4,7 @@
 @{
     bool lazyImages = (ViewBag.SiteSettings as SiteSettings)?.LazyImages ?? false;
     bool imageShadow = (ViewBag.SiteSettings as SiteSettings)?.ImageShadow ?? false;
-    IAsset image = Model.FirstOrDefault();
+    IAsset image = Model?.FirstOrDefault();
 }
 @if (image != null)
 {

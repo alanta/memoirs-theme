@@ -10,7 +10,7 @@ namespace MemoirsTheme.Pipelines
     {
         public DownloadImages()
         {
-            Dependencies.AddRange(nameof(Posts), nameof(Home));
+            Dependencies.AddRange(nameof(Posts), nameof(Home), nameof(Pages));
             PostProcessModules = new ModuleList(
                 // pull documents from other pipelines
                 new ReplaceDocuments(Dependencies.ToArray()),

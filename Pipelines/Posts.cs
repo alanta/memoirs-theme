@@ -19,26 +19,8 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                 new Kontent<Post>(deliveryClient)
                     .OrderBy(Post.PostDateCodename, SortOrder.Descending)
                     .WithQuery(new DepthParameter(1), new IncludeTotalCountParameter()),
-                /*new SetMetadata(nameof(Category), Config.FromDocument((doc, ctx) =>
-                {
-                    // Add category (useful for grouping)
-                    return doc.AsKontent<Article>().SelectedCategory.System.Codename;
-                })),
-                new SetMetadata(nameof(Article.SelectedCategory), Config.FromDocument((doc, ctx) =>
-                {
-                    // Add some extra metadata to be used later for creating filenames
-                    return doc.AsKontent<Article>().SelectedCategory;
-                })),
-                new SetMetadata(nameof(Tag), Config.FromDocument((doc, ctx) =>
-                {
-                    // Add tag (useful for grouping)
-                    return doc.AsKontent<Article>().TagObjects.Select(t=>t.System.Codename);
-                })),
-                new SetMetadata(nameof(Article.TagObjects), Config.FromDocument((doc, ctx) =>
-                {
-                    // Add some extra metadata to be used later for creating filenames
-                    return doc.AsKontent<Article>().TagObjects;
-                })),*/
+                new SetMetadata(nameof(Post.Tags),
+                    KontentConfig.Get<Post,string[]>(post => post.Tags?.Select(t => t.Codename).ToArray())),
                 new SetDestination(KontentConfig.Get((Post post)  => new NormalizedPath(post.Url))),
                 new SetMetadata(SearchIndex.SearchItemKey, Config.FromDocument((doc,ctx)=>
                 {
