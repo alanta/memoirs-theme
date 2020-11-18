@@ -18,7 +18,7 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
             InputModules = new ModuleList{
                 new Kontent<Post>(deliveryClient)
                     .OrderBy(Post.PostDateCodename, SortOrder.Descending)
-                    .WithQuery(new DepthParameter(1), new IncludeTotalCountParameter()),
+                    .WithQuery(new DepthParameter(2), new IncludeTotalCountParameter()),
                 new SetMetadata(nameof(Post.Tags),
                     KontentConfig.Get<Post,string[]>(post => post.Tags?.Select(t => t.Codename).ToArray())),
                 new SetDestination(KontentConfig.Get((Post post)  => new NormalizedPath(post.Url))),

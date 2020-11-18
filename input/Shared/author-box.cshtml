@@ -1,0 +1,37 @@
+@using Kentico.Kontent.ImageTransformation
+@using Kentico.Kontent.Statiq.Memoirs.Models
+@using MemoirsTheme.Helpers
+@model Kentico.Kontent.Statiq.Memoirs.Models.Author
+@{
+    var site = ViewData["SiteMetaData"] as SiteSettings;
+}
+<!-- Author Box -->
+@if( Model != null && site.AuthorBox){
+<div class="d-flex authorbox align-items-center">
+    <div class="col-md-2 mr-4 text-center">
+        @if (Model?.AvatarImage != null)
+        {
+            @Html.Image(Model.AvatarImage, Model.Name, site.LazyImages, 580, 400, ImageFitMode.Crop, new { @class = "img-thumb" })
+        }
+        else
+        {
+             <img class="author-thumb" src="https://www.gravatar.com/avatar/@Model.Gravatar?s=250&d=mm&r=x" alt="@Model.Name">
+        }
+    </div>
+    <div class="col-md-10">
+        @foreach (var contact in Model.Contacts.OfType<Contact>())
+        {
+            @if (contact.Icon == "web")
+            {
+                <a target="_blank" class="text-dark h4" href="@contact.Url">About @Model.Name</a>
+            }
+            else
+            {
+                <a target="_blank" href="@contact.Url" class="btn-sm"><i class="fab fa-@contact.Icon"></i></a>    
+            }
+        }
+
+        <span class="author-description d-block mt-2">@Model.Bio</span>
+    </div>
+</div>
+}
