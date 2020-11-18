@@ -1,46 +1,47 @@
 @using Kentico.Kontent.Statiq.Memoirs.Models
-@using Statiq.Common
-@model Kentico.Kontent.Statiq.Memoirs.Models.PostViewModel
-@{ ViewData["SiteMetadata"] = Model.Metadata;
-                ViewData["Author"] = Model.Author;
-                var article = Model.Post; }
+@model Kentico.Kontent.Statiq.Memoirs.Models.Post
+@{ 
+    var author = Model.Author.OfType<Author>().FirstOrDefault();
+    ViewData["Author"] = author;
+}
 <div class="entry-header">
     <!-- Post Title -->
-    <h1 class="posttitle">@Model.Post.Title</h1>
+    <h1 class="posttitle">@Model.Title</h1>
     <!-- Author & Date  Box -->
-    @if (Model.Author != null)
+    @if (author != null)
     {
 <div class="d-flex align-items-center mt-4">
     <div>
-        @if (Model.Author.AvatarImage?.Any() ?? false)
+        @if (author.AvatarImage?.Any() ?? false)
         {
-<img class="author-thumb" src="@Model.Author.AvatarImage.First().Url?w=250&h=250" alt="@Model.Author.Name"> }
-                else
-                {
-<img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">}
+            <img class="author-thumb" src="@author.AvatarImage.First().Url?w=250&h=250" alt="@author.Name"> }
+        else
+        {
+            <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="@author.Name">
+        }
     </div>
     <div>
-        Written by <span class="text-dark">@Model.Author.Name</span> on
-        <span class="post-date"><time class="post-date" datetime="@Model.Post.PostDate?.ToString("dd-MM-yyyy")">@Html.DisplayFor(m => m.Post.PostDate)</time></span>
+        Written by <span class="text-dark">@author.Name</span> on
+        <span class="post-date"><time class="post-date" datetime="@Model.PostDate?.ToString("dd-MM-yyyy")">@Html.DisplayFor(m => m.PostDate)</time></span>
     </div>
 </div>}
 </div>
 
 <!-- Featured Image -->
-@{ await Html.RenderPartialAsync("_featured-image", @Model.Post.TeaserImage); }
+<partial name="Shared/_featured-image" model="Model.Image" />
 
 <!-- Content -->
 @* {% include article.html %} *@
 <div class="article-post">
-    @Html.Raw(Model.Post.Body)
+    @Html.Raw(Model.Body)
 </div>
 
 <!-- Rating -->
-{% if page.rating %}
+@if (Model.Rating.HasValue)
+{
 <div class="rating mt-4 mb-4 d-flex align-items-center">
-    <strong class="mr-1">Rating:</strong> {% include star_rating.html %}
-</div>
-{% endif %}
+    <strong class="mr-1">Rating:</strong> <partial name="Shared/star_rating" model="Model.Rating.Value"/>
+</div>}
 
 <!-- Author Box if enabled from _config.yml -->
 {% include author-box.html %}
@@ -57,25 +58,25 @@
 <!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first:
 https://search.google.com/structured-data/testing-tool/u/0/
 ================================================== -->
-@*{% if page.rating %}
+@if (Model.Rating.HasValue)
+{
 <script type="application/ld+json">
     {
-    "@context": "http://schema.org/",
-    "@type": "Review",
+    "context": "http://schema.org/",
+    "type": "Review",
     "itemReviewed": {
-    "@type": "Thing",
-    "name": "{{ page.title }}"
+    "type": "Thing",
+    "name": "@Model.Title"
     },
     "author": {
-    "@type": "Person",
-    "name": "{{ author.display_name }}"
+    "type": "Person",
+    "name": "@author.Name"
     },
-    "datePublished": "{{ page.date | date:"%Y-%m-%d" }}",
+    "datePublished": "@Model.PostDate.Value.ToString("yyyy-MM-dd")",
     "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "{{ page.rating }}",
+    "type": "Rating",
+    "ratingValue": "@Model.Rating",
     "bestRating": "5"
     }
     }
-</script>
-{% endif %}*@
+</script>}

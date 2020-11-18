@@ -6,13 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kontent.Statiq" Version="1.0.0-beta0007" />
+    <PackageReference Include="Kontent.Statiq" Version="1.0.0-beta0008" />
     <PackageReference Include="LunrCore" Version="2.3.8.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.9" />
-    <PackageReference Include="Statiq.App" Version="1.0.0-beta.27" />
-    <PackageReference Include="Statiq.Lunr" Version="1.0.0-beta.27" />
-    <PackageReference Include="Statiq.Sass" Version="1.0.0-beta.27" />
-    <PackageReference Include="Statiq.Web" Version="1.0.0-beta.12" />
+    <PackageReference Include="Statiq.App" Version="1.0.0-beta.28" />
+    <PackageReference Include="Statiq.Lunr" Version="1.0.0-beta.28" />
+    <PackageReference Include="Statiq.Sass" Version="1.0.0-beta.28" />
+    <PackageReference Include="Statiq.Web" Version="1.0.0-beta.13" />
   </ItemGroup>
 
   <ItemGroup>

@@ -62,8 +62,7 @@
             <li><a href="@IExecutionContext.Current.GetLink("/contact")">Contact</a></li>
         </ul>
     </nav>
-
-    @await Html.PartialAsync("search-lunr")
+    <partial name="Shared/search-lunr"/>
 
     <!-- End Sidebar Navigation
     ================================================== -->
@@ -86,7 +85,7 @@
             {
 <p class="sitetag">
     @site.Description
-</p>            }
+</p>        }
 
             <!-- Content
             ================================================== -->
@@ -137,12 +136,12 @@
 
     @if (site.LazyImages)
     {
-<script src="@IExecutionContext.Current.GetLink("/assets/js/lazyload.js")"></script>}
+<script src="@IExecutionContext.Current.GetLink("/assets/js/lazyload.js")"></script>
+}
 
     @if (ViewBag.Layout == "post")
     {
-<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
-}
+<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>}
 
 </body>
 </html>

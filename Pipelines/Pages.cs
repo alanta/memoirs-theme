@@ -11,14 +11,14 @@ using System.Linq;
 
 namespace Kentico.Kontent.Statiq.Lumen.Pipelines
 {
-    public class Posts : Pipeline
+    public class Pages : Pipeline
     {
-        public Posts(IDeliveryClient deliveryClient, SiteSettings site)
+        public Pages(IDeliveryClient deliveryClient, SiteSettings site)
         {
             InputModules = new ModuleList{
-                new Kontent<Post>(deliveryClient)
+                new Kontent<Page>(deliveryClient)
                     .OrderBy(Post.PostDateCodename, SortOrder.Descending)
-                    .WithQuery(new DepthParameter(1), new IncludeTotalCountParameter()),
+                    .WithQuery(new DepthParameter(2), new IncludeTotalCountParameter()),
                 /*new SetMetadata(nameof(Category), Config.FromDocument((doc, ctx) =>
                 {
                     // Add category (useful for grouping)
@@ -39,24 +39,23 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                     // Add some extra metadata to be used later for creating filenames
                     return doc.AsKontent<Article>().TagObjects;
                 })),*/
-                new SetDestination(KontentConfig.Get((Post post)  => new NormalizedPath(post.Url))),
+                new SetDestination(KontentConfig.Get((Page page)  => new NormalizedPath(page.Url))),
                 new SetMetadata(SearchIndex.SearchItemKey, Config.FromDocument((doc,ctx)=>
                 {
-                    var post = doc.AsKontent<Post>();
-                    return new LunrIndexDocItem(doc, post.Title, post.Body)
+                    var page = doc.AsKontent<Page>();
+                    return new LunrIndexDocItem(doc, page.Title, page.Body)
                     {
-                        Description = post.MetadataMetaDescription,
-                        Tags = string.Join(", ", post.Tags.Select( t => t.Name ))
+                        Description = page.MetadataMetaDescription,
+                        //Tags = string.Join(", ", post.Tags.Select( t => t.Name ))
                     };
                 })),
             };
 
             ProcessModules = new ModuleList {
-                new MergeContent(new ReadFiles(patterns: "Post.cshtml") ),
+                new MergeContent(new ReadFiles(patterns: "Page.cshtml") ),
                 new RenderRazor()
-                    .WithViewData("Author", KontentConfig.Get<Post,Author>( p => p.Author.OfType<Author>().FirstOrDefault() ))
                     .WithViewData("SiteMetadata", site )
-                    .WithModel(KontentConfig.As<Post>()),
+                    .WithModel(KontentConfig.As<Page>()),
                 new KontentImageProcessor()
             };
 

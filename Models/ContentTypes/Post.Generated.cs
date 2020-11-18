@@ -13,7 +13,9 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
     public partial class Post
     {
         public const string Codename = "post";
+        public const string AuthorCodename = "author";
         public const string BodyCodename = "body";
+        public const string ImageCodename = "image";
         public const string MetadataMetaDescriptionCodename = "metadata__meta_description";
         public const string MetadataMetaKeywordsCodename = "metadata__meta_keywords";
         public const string MetadataMetaTitleCodename = "metadata__meta_title";
@@ -26,12 +28,14 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public const string MetadataTwitterSiteCodename = "metadata__twitter_site";
         public const string PostDateCodename = "post_date";
         public const string RelatedCodename = "related";
+        public const string SettingsCodename = "settings";
         public const string TagsCodename = "tags";
-        public const string TeaserImageCodename = "teaser_image";
         public const string TitleCodename = "title";
-        public const string UrlPatternCodename = "url_pattern";
+        public const string UrlSlugCodename = "url_slug";
 
+        public IEnumerable<object> Author { get; set; }
         public string Body { get; set; }
+        public IEnumerable<IAsset> Image { get; set; }
         public string MetadataMetaDescription { get; set; }
         public string MetadataMetaKeywords { get; set; }
         public string MetadataMetaTitle { get; set; }
@@ -44,10 +48,10 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public string MetadataTwitterSite { get; set; }
         public DateTime? PostDate { get; set; }
         public IEnumerable<object> Related { get; set; }
+        public IEnumerable<IMultipleChoiceOption> Settings { get; set; }
         public IContentItemSystemAttributes System { get; set; }
         public IEnumerable<ITaxonomyTerm> Tags { get; set; }
-        public IEnumerable<IAsset> TeaserImage { get; set; }
         public string Title { get; set; }
-        public string UrlPattern { get; set; }
+        public string UrlSlug { get; set; }
     }
 }

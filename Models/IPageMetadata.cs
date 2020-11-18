@@ -6,7 +6,7 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
     public interface IPageMetadata
     {
         public string MetadataTwitterCreator { get;  }
-        public string UrlPattern { get; }
+        public string UrlSlug { get; }
         public string MetadataMetaKeywords { get; }
         public IEnumerable<IAsset> MetadataTwitterImage { get; }
         public string MetadataOgTitle { get; }
@@ -17,7 +17,9 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public string MetadataOgDescription { get; }
 
         public string Title { get; }
-        public IEnumerable<IAsset> TeaserImage { get;  }
+        public string Body { get; }
+        public IEnumerable<IAsset> Image { get;  }
         public IEnumerable<IMultipleChoiceOption> MetadataTwitterCard { get; set; }
+        public IEnumerable<IMultipleChoiceOption> Settings { get; set; }
     }
 }

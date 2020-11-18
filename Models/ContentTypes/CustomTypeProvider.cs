@@ -12,10 +12,9 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
             {typeof(Author), "author"},
             {typeof(CodeSnippet), "code_snippet"},
             {typeof(Contact), "contact"},
-            {typeof(Container), "container"},
-            {typeof(CustomerCase), "customer_case"},
             {typeof(GithubGist), "github_gist"},
             {typeof(Home), "home"},
+            {typeof(Page), "page"},
             {typeof(Post), "post"}
         };
 

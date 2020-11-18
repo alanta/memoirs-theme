@@ -1,6 +1,4 @@
-﻿using Jint.Native.Json;
-using Kentico.Kontent.Statiq.Lumen.Pipelines;
-using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+﻿using Kentico.Kontent.Statiq.Lumen.Pipelines;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.SearchIndex;
@@ -65,7 +63,7 @@ namespace MemoirsTheme.Pipelines
 
                     documents.Add(id, new 
                     {
-                        url = searchItem.GetLink(context, false),
+                        url = searchItem.GetLink(context, false)+".html",
                         title = searchItem.Title,
                         body = searchItem.Description
                     });

@@ -24,7 +24,7 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public const string MetadataTwitterCreatorCodename = "metadata__twitter_creator";
         public const string MetadataTwitterImageCodename = "metadata__twitter_image";
         public const string MetadataTwitterSiteCodename = "metadata__twitter_site";
-        public const string UrlPatternCodename = "url_pattern";
+        public const string UrlSlugCodename = "url_slug";
 
         public string Contact { get; set; }
         public string MetadataMetaDescription { get; set; }
@@ -38,6 +38,6 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public IEnumerable<IAsset> MetadataTwitterImage { get; set; }
         public string MetadataTwitterSite { get; set; }
         public IContentItemSystemAttributes System { get; set; }
-        public string UrlPattern { get; set; }
+        public string UrlSlug { get; set; }
     }
 }

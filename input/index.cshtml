@@ -1,6 +1,5 @@
-@model Kentico.Kontent.Statiq.Memoirs.Models.HomeViewModel
+@model MemoirsTheme.Models.PagedContent<Kentico.Kontent.Statiq.Memoirs.Models.Post>
 @{
-    ViewData["SiteMetadata"] = Model.Metadata;
     ViewData["IsHome"] = Model.Index == 1;
 }
 <div class="blog-grid-container">

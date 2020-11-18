@@ -10,10 +10,11 @@ using Kentico.Kontent.Delivery.Abstractions;
 
 namespace Kentico.Kontent.Statiq.Memoirs.Models
 {
-    public partial class Container
+    public partial class Page
     {
-        public const string Codename = "container";
-        public const string ItemsCodename = "items";
+        public const string Codename = "page";
+        public const string BodyCodename = "body";
+        public const string ImageCodename = "image";
         public const string MetadataMetaDescriptionCodename = "metadata__meta_description";
         public const string MetadataMetaKeywordsCodename = "metadata__meta_keywords";
         public const string MetadataMetaTitleCodename = "metadata__meta_title";
@@ -24,10 +25,13 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public const string MetadataTwitterCreatorCodename = "metadata__twitter_creator";
         public const string MetadataTwitterImageCodename = "metadata__twitter_image";
         public const string MetadataTwitterSiteCodename = "metadata__twitter_site";
+        public const string RelatedCodename = "related";
+        public const string SettingsCodename = "settings";
         public const string TitleCodename = "title";
-        public const string UrlCodename = "url";
+        public const string UrlSlugCodename = "url_slug";
 
-        public IEnumerable<object> Items { get; set; }
+        public string Body { get; set; }
+        public IEnumerable<IAsset> Image { get; set; }
         public string MetadataMetaDescription { get; set; }
         public string MetadataMetaKeywords { get; set; }
         public string MetadataMetaTitle { get; set; }
@@ -38,8 +42,10 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public string MetadataTwitterCreator { get; set; }
         public IEnumerable<IAsset> MetadataTwitterImage { get; set; }
         public string MetadataTwitterSite { get; set; }
+        public IEnumerable<object> Related { get; set; }
+        public IEnumerable<IMultipleChoiceOption> Settings { get; set; }
         public IContentItemSystemAttributes System { get; set; }
         public string Title { get; set; }
-        public string Url { get; set; }
+        public string UrlSlug { get; set; }
     }
 }

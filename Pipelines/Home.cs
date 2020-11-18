@@ -1,6 +1,7 @@
 ﻿using Kentico.Kontent.Statiq.Lumen.Pipelines;
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
+using MemoirsTheme.Models;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
@@ -20,7 +21,8 @@ namespace MemoirsTheme.Pipelines
                 new SetDestination(Config.FromDocument((doc, ctx) => Filename(doc))),
                 new MergeContent(new ReadFiles(patterns: "Index.cshtml")),
                 new RenderRazor()
-                    .WithModel(Config.FromDocument((document, context) => new HomeViewModel(document, PagingUrl, site))),
+                    .WithViewData("SiteMetaData", site)
+                    .WithModel(Config.FromDocument((document, context) => new PagedContent<Post>(document, PagingUrl))),
                 new KontentImageProcessor()
 
             );

@@ -1,16 +1,19 @@
+@using Kentico.Kontent.Statiq.Memoirs.Models
+@model Kentico.Kontent.Statiq.Memoirs.Models.IPageMetadata
 <!-- Post, Page Content
 ================================================== -->
 <div class="article-post">
     <!-- Toc if any -->
-    @*{% if page.toc %}
-    {% if page.beforetoc %}
-        <p><em>{{page.beforetoc}}</em></p>
-    {% endif %}
-    <div class="toc mt-4 mb-4 lead">
+    @if( Model.TableOfContents()){
+        /*if (Model.beforetoc)
+         {
+             <p><em>Model.beforetoc</em></p>
+         }*/
+        <div class="toc mt-4 mb-4 lead">
         <h3 class="font-weight-bold">Summary</h3>
-        {% include toc.html html=content %}
+        <partial name="toc" model="Model.Body"/>
     </div>
-    {% endif %}*@
+    }
     <!-- End Toc -->
-    {{content}}
+    @Model.Body
 </div>
