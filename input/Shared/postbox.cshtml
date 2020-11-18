@@ -3,7 +3,7 @@
 @using MemoirsTheme.Helpers
 @model Kentico.Kontent.Statiq.Memoirs.Models.Post
 @{ var site = ViewData["SiteMetadata"] as SiteSettings;
-    Author author = null; // todo 
+    Author author = Model.Author.OfType<Author>().FirstOrDefault();
 }
 
 <div class="blog-grid-item">
@@ -31,7 +31,7 @@
     <span class="meta-footer-thumb">
         @if (author?.AvatarImage != null)
         {
-            @Html.Image(author.AvatarImage, author.Name, site.LazyImages, 580, 400, ImageFitMode.Crop, new { @class = "img-thumb" })
+            @Html.Image(author.AvatarImage, author.Name, site.LazyImages, 40, fit:ImageFitMode.Crop,htmlAttributes: new { @class = "author-thumb" })
         }
         else
         {
@@ -40,7 +40,7 @@
     </span>
                     <span class="author-meta">
                         @* TODO : author detail page*@
-                        <span class="post-name"><a target="_blank" href="">@author.Name</a></span>
+                        <span class="post-name"><a target="_blank" href="author/@author.System.Codename">@author.Name</a></span>
                     </span>}
 
                 <span class="post-date">@Model.PostDate?.ToString("dd MMMM yyyy")</span>
