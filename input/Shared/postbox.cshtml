@@ -19,7 +19,7 @@
                 @if (Model.Rating.HasValue)
                 {
     <div class="mb-2 mt-2 font-weight-normal">
-        @{ await Html.RenderPartialAsync("star_rating_postbox", Model);}
+        <partial name="star_rating" model="Model.Rating"/>
     </div>}
             </h2>
             <h4 class="card-text">@Model.MetadataMetaDescription.GetMaxWords(30)</h4>

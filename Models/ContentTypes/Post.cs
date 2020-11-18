@@ -8,6 +8,5 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
     {
         public string Url => $"post/{PostDate.Value.Year}/{PostDate.Value.Month:00}/{UrlSlug}.html";
 
-        public int? Rating = null; // TODO : ratings
     }
 }

@@ -27,6 +27,7 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public const string MetadataTwitterImageCodename = "metadata__twitter_image";
         public const string MetadataTwitterSiteCodename = "metadata__twitter_site";
         public const string PostDateCodename = "post_date";
+        public const string RatingCodename = "rating";
         public const string RelatedCodename = "related";
         public const string SettingsCodename = "settings";
         public const string TagsCodename = "tags";
@@ -47,6 +48,7 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public IEnumerable<IAsset> MetadataTwitterImage { get; set; }
         public string MetadataTwitterSite { get; set; }
         public DateTime? PostDate { get; set; }
+        public decimal? Rating { get; set; }
         public IEnumerable<object> Related { get; set; }
         public IEnumerable<IMultipleChoiceOption> Settings { get; set; }
         public IContentItemSystemAttributes System { get; set; }
