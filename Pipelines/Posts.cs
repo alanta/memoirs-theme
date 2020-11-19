@@ -36,6 +36,7 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
             ProcessModules = new ModuleList {
                 new MergeContent(new ReadFiles(patterns: "Post.cshtml") ),
                 new RenderRazor()
+                    .WithViewData("Title", KontentConfig.Get<Post,string>( p => p.Title ))
                     .WithViewData("Author", KontentConfig.Get<Post,Author>( p => p.Author.OfType<Author>().FirstOrDefault() ))
                     .WithViewData("SiteMetadata", site )
                     .WithModel(KontentConfig.As<Post>()),

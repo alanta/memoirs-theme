@@ -1,0 +1,15 @@
+@using Kentico.Kontent.Statiq.Memoirs.Models
+@model Kentico.Kontent.Statiq.Memoirs.Models.IPageMetadata
+<!-- Comments
+================================================== -->
+@if (Model.Comments() && !string.IsNullOrWhiteSpace(Html.Site().DisqusId))
+{
+<div class="comments">
+    <button class="btn btn-dark show-comments">Load Comments</button>
+    <div id="comments">
+        <h4 class="mb-4">Comments</h4>
+        <partial name="disqus" />
+        <div class="clearfix"></div>
+    </div>
+</div>
+}

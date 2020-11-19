@@ -35,6 +35,7 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
             {
                 new MergeContent(new ReadFiles(patterns: "Page.cshtml")),
                 new RenderRazor()
+                    .WithViewData("Title", KontentConfig.Get<Page,string>( p => p.Title ))
                     .WithViewData("SiteMetadata", site)
                     .WithModel(KontentConfig.As<Page>()),
                 new KontentImageProcessor()

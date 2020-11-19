@@ -21,6 +21,7 @@ namespace MemoirsTheme.Pipelines
                 new SetDestination(Config.FromDocument((doc, ctx) => Filename(doc))),
                 new MergeContent(new ReadFiles(patterns: "Index.cshtml")),
                 new RenderRazor()
+                    .WithViewData("Title", "Home")
                     .WithViewData("SiteMetaData", site)
                     .WithModel(Config.FromDocument((document, context) => new PagedContent<Post>(document, PagingUrl))),
                 new KontentImageProcessor()

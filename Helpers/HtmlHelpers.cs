@@ -1,5 +1,6 @@
 ﻿using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.ImageTransformation;
+using Kentico.Kontent.Statiq.Memoirs.Models;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -16,6 +17,11 @@ namespace MemoirsTheme.Helpers
         {
             var context = html.ViewData["StatiqExecutionContext"] as IExecutionContext;
             return context.GetLink(relativeUri, includeHost);
+        }
+
+        public static SiteSettings Site(this IHtmlHelper html)
+        {
+            return html.ViewData["SiteMetaData"] as SiteSettings;
         }
 
         public static IHtmlContent Image(this IHtmlHelper html, IEnumerable<IAsset> assets, string? description = null, bool lazy = false,

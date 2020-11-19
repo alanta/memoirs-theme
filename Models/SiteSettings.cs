@@ -9,6 +9,6 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models{
         public bool ImageShadow { get; set; }
         public string Copyright { get; set; }
         public bool AuthorBox { get; set; }
-        public string DisqussId { get; set; }
+        public string DisqusId { get; set; }
     }
 }

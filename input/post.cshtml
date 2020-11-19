@@ -21,7 +21,7 @@ else
     </div>
     <div>
         Written by <span class="text-dark">@author.Name</span> on
-        <span class="post-date"><time class="post-date" datetime="@Model.PostDate?.ToString("dd-MM-yyyy")">@Html.DisplayFor(m => m.PostDate)</time></span>
+        <span class="post-date"><time class="post-date" datetime="@Model.PostDate?.ToString("dd-MM-yyyy")">@Model.PostDate?.ToString("d MMMM yyyy")</time></span>
     </div>
 </div>}
 </div>
@@ -46,7 +46,7 @@ else
 <partial name="Shared/author-box" model="author" />
 
 <!-- Comments if not disabled with comments: false -->
-{% include comments.html %}
+<partial name="comments" model="Model"/>
 
 <!-- Share -->
 <partial name="Shared/share" model="Model" />
@@ -82,10 +82,10 @@ https://search.google.com/structured-data/testing-tool/u/0/
 @section footerScripts{
 @if (Model.Comments())
 {
-    if (string.IsNullOrWhiteSpace(site.DisqussId))
+    if (string.IsNullOrWhiteSpace(site.DisqusId))
     {
-        throw new InvalidOperationException("Please configure the DisqussId in the site setting before enabling comments.");
+        throw new InvalidOperationException("Please configure the DisqusId in the site setting before enabling comments.");
     }
-<script id="dsq-count-scr" src="//@(site.DisqussId).disqus.com/count.js"></script>
+<script id="dsq-count-scr" src="//@(site.DisqusId).disqus.com/count.js"></script>
 }
 }

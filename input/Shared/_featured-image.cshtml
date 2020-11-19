@@ -1,9 +1,8 @@
 @using Kentico.Kontent.Delivery.Abstractions
-@using Kentico.Kontent.Statiq.Memoirs.Models
 @model IEnumerable<Kentico.Kontent.Delivery.Abstractions.IAsset>
 @{
-    bool lazyImages = (ViewBag.SiteSettings as SiteSettings)?.LazyImages ?? false;
-    bool imageShadow = (ViewBag.SiteSettings as SiteSettings)?.ImageShadow ?? false;
+    bool lazyImages = Html.Site().LazyImages;
+    bool imageShadow = Html.Site().ImageShadow;
     IAsset image = Model?.FirstOrDefault();
 }
 @if (image != null)
