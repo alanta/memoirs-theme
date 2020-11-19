@@ -30,10 +30,7 @@ else
 <partial name="Shared/_featured-image" model="Model.Image" />
 
 <!-- Content -->
-@* {% include article.html %} *@
-<div class="article-post">
-    @Html.Raw(Model.Body)
-</div>
+<partial name="Shared/_article" model="Model"/>
 
 <!-- Rating -->
 @if (Model.Rating.HasValue)
@@ -46,13 +43,13 @@ else
 <partial name="Shared/author-box" model="author" />
 
 <!-- Comments if not disabled with comments: false -->
-<partial name="comments" model="Model"/>
+<partial name="Shared/comments" model="Model"/>
 
 <!-- Share -->
 <partial name="Shared/share" model="Model" />
 
 <!-- Related Post -->
-{% include related-posts.html %}
+<partial name="Shared/related-posts" model="Model" />
 
 <!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first:
 https://search.google.com/structured-data/testing-tool/u/0/

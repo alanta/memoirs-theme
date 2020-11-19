@@ -14,6 +14,7 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
     {
         public const string Codename = "page";
         public const string BodyCodename = "body";
+        public const string CategoriesCodename = "categories";
         public const string ImageCodename = "image";
         public const string MetadataMetaDescriptionCodename = "metadata__meta_description";
         public const string MetadataMetaKeywordsCodename = "metadata__meta_keywords";
@@ -27,10 +28,12 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public const string MetadataTwitterSiteCodename = "metadata__twitter_site";
         public const string RelatedCodename = "related";
         public const string SettingsCodename = "settings";
+        public const string TagsCodename = "tags";
         public const string TitleCodename = "title";
         public const string UrlSlugCodename = "url_slug";
 
         public string Body { get; set; }
+        public IEnumerable<ITaxonomyTerm> Categories { get; set; }
         public IEnumerable<IAsset> Image { get; set; }
         public string MetadataMetaDescription { get; set; }
         public string MetadataMetaKeywords { get; set; }
@@ -45,6 +48,7 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public IEnumerable<object> Related { get; set; }
         public IEnumerable<IMultipleChoiceOption> Settings { get; set; }
         public IContentItemSystemAttributes System { get; set; }
+        public IEnumerable<ITaxonomyTerm> Tags { get; set; }
         public string Title { get; set; }
         public string UrlSlug { get; set; }
     }

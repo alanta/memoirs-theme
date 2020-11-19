@@ -21,6 +21,8 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                     .WithQuery(new DepthParameter(2), new IncludeTotalCountParameter()),
                 new SetMetadata(nameof(Post.Tags),
                     KontentConfig.Get<Post,string[]>(post => post.Tags?.Select(t => t.Codename).ToArray())),
+                new SetMetadata(nameof(Post.Categories),
+                    KontentConfig.Get<Post,string[]>(post => post.Categories?.Select(t => t.Codename).ToArray())),
                 new SetDestination(KontentConfig.Get((Post post)  => new NormalizedPath(post.Url))),
                 new SetMetadata(SearchIndex.SearchItemKey, Config.FromDocument((doc,ctx)=>
                 {

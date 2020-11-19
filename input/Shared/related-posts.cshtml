@@ -1,0 +1,39 @@
+@using Kentico.Kontent.Statiq.Memoirs.Models
+@model Kentico.Kontent.Statiq.Memoirs.Models.Post
+<!-- Related Posts
+================================================== -->
+@if (!Model.Tags.Any() && !Model.Categories.Any() && !Model.Related.Any())
+{
+    return;
+}
+
+<div class="related-posts">  
+   
+    <h2 class="text-center mb-4">Explore more like this</h2>
+    
+    <div class="d-flex justify-content-center align-items-center">
+    
+    <!-- Categories -->
+    @foreach (var category in Model.Categories.OrderBy(c => c.Name))
+    {
+        <a class="smoothscroll badge badge-primary text-capitalize" href="@Html.GetLink($"/categories#{category.Codename}")">@category.Name</a>
+    }
+
+    <!-- Tags -->  
+    @foreach (var tag in Model.Tags.OrderBy(c => c.Name))
+    {
+        <a class="smoothscroll badge badge-primary text-capitalize" href="@Html.GetLink($"/tags#{tag.Codename}")">@tag.Name</a>
+    }
+
+    </div>
+
+    @if (Model.Related.Any())
+    {
+        <div class="blog-grid-container">
+            @foreach (IPageMetadata related in Model.Related.OfType<IPageMetadata>().Take(3))
+            {
+                <partial name="postbox" model="related"/>
+            }
+        </div>
+    }
+</div>

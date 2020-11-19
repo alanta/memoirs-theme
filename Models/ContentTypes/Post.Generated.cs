@@ -15,6 +15,7 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
         public const string Codename = "post";
         public const string AuthorCodename = "author";
         public const string BodyCodename = "body";
+        public const string CategoriesCodename = "categories";
         public const string ImageCodename = "image";
         public const string MetadataMetaDescriptionCodename = "metadata__meta_description";
         public const string MetadataMetaKeywordsCodename = "metadata__meta_keywords";
@@ -36,6 +37,7 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
 
         public IEnumerable<object> Author { get; set; }
         public string Body { get; set; }
+        public IEnumerable<ITaxonomyTerm> Categories { get; set; }
         public IEnumerable<IAsset> Image { get; set; }
         public string MetadataMetaDescription { get; set; }
         public string MetadataMetaKeywords { get; set; }

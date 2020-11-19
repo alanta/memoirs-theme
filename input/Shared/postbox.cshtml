@@ -9,13 +9,13 @@
 <div class="blog-grid-item">
     <div class="card h-100">
         <div class="maxthumb">
-            <a href="@Model.Url">
+            <a href="@Html.GetLink(Model.Url)">
                 @Html.Image(Model.Image, Model.Title, site.LazyImages, 580, 400, ImageFitMode.Crop, new { @class = "img-thumb" })
             </a>
         </div>
         <div class="card-body">
             <h2 class="card-title">
-                <a class="text-dark" href="@Model.Url">@Model.Title</a>
+                <a class="text-dark" href="@Html.GetLink(Model.Url)">@Model.Title</a>
                 @if (Model.Rating.HasValue)
                 {
     <div class="mb-2 mt-2 font-weight-normal">

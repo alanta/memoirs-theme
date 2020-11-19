@@ -7,6 +7,7 @@ using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
 using Statiq.SearchIndex;
+using System.Linq;
 
 namespace Kentico.Kontent.Statiq.Lumen.Pipelines
 {
@@ -19,6 +20,10 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                 new Kontent<Page>(deliveryClient)
                     .OrderBy(Post.TitleCodename, SortOrder.Descending)
                     .WithQuery(new DepthParameter(2), new IncludeTotalCountParameter()),
+                new SetMetadata(nameof(Page.Tags),
+                    KontentConfig.Get<Page,string[]>(post => post.Tags?.Select(t => t.Codename).ToArray())),
+                new SetMetadata(nameof(Page.Categories),
+                    KontentConfig.Get<Page,string[]>(post => post.Categories?.Select(t => t.Codename).ToArray())),
                 new SetDestination(KontentConfig.Get((Page page) => new NormalizedPath(page.Url))),
                 new SetMetadata(SearchIndex.SearchItemKey, Config.FromDocument((doc, ctx) =>
                 {
