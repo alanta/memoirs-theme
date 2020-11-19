@@ -10,17 +10,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="icon" href="@IExecutionContext.Current.GetLink("/assets/images/logo.png")">
+    <link rel="icon" href="@Html.GetLink("/assets/images/logo.png")">
 
     <title>@ViewBag.Title | @site.Name</title>
 
     @RenderSection("seo", required: false)
 
-    <link href="@IExecutionContext.Current.GetLink("/assets/css/prism.css")" rel="stylesheet">
+    <link href="@Html.GetLink("/assets/css/prism.css")" rel="stylesheet">
 
-    <link href="@IExecutionContext.Current.GetLink("/assets/css/theme.css")" rel="stylesheet">
+    <link href="@Html.GetLink("/assets/css/theme.css")" rel="stylesheet">
 
-    <script src="@IExecutionContext.Current.GetLink("/assets/js/jquery.min.js")"></script>
+    <script src="@Html.GetLink("/assets/js/jquery.min.js")"></script>
 
 </head>
 
@@ -56,10 +56,10 @@
     <nav id="menu">
         <ul>
             <h3>Navigation</h3>
-            <li><a href="@IExecutionContext.Current.GetLink("/")">Home</a></li>
-            <li><a href="@IExecutionContext.Current.GetLink("/about")">About <span class="badge badge-primary">Memoirs Jekyll Theme</span></a></li>
+            <li><a href="@Html.GetLink("/")">Home</a></li>
+            <li><a href="@Html.GetLink("/about")">About <span class="badge badge-primary">Memoirs Jekyll Theme</span></a></li>
             <li><a target="_blank" href="https://bootstrapstarter.com/bootstrap-templates/jekyll-theme-memoirs/">Get Memoirs</a></li>
-            <li><a href="@IExecutionContext.Current.GetLink("/contact")">Contact</a></li>
+            <li><a href="@Html.GetLink("/contact")">Contact</a></li>
         </ul>
     </nav>
     <partial name="Shared/search-lunr"/>
@@ -74,8 +74,8 @@
             <!-- Site Logo/Name
             ================================================== -->
 
-            <a class="navbar-brand" href="@IExecutionContext.Current.GetLink("/")">
-                <img src="@IExecutionContext.Current.GetLink(site.Logo)" alt="@site.Name">
+            <a class="navbar-brand" href="@Html.GetLink("/")">
+                <img src="@Html.GetLink(site.Logo)" alt="@site.Name">
             </a>
 
 
@@ -97,7 +97,7 @@
                 <!-- Newsletter
                 ================================================== -->
                 <div class="newsletter text-center">
-                    <span class="h4"><img src="@IExecutionContext.Current.GetLink(site.Logo)" class="newsletter-logo" alt="{{site.title}}"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
+                    <span class="h4"><img src="@Html.GetLink(site.Logo)" class="newsletter-logo" alt="{{site.title}}"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
                     <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
                         <div class="mc-field-group d-inline-flex">
                         <input type="email" placeholder="Your e-mail" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
@@ -118,7 +118,7 @@
                         Copyright © @DateTime.Today.Year @site.Copyright
                     </div>
                     <div class="col-md-6 col-sm-12 text-center text-lg-right">
-                        <a target="_blank" href="https://www.wowthemes.net/memoirs-free-jekyll-theme/">Memoirs Statiq Kontent Theme</a> by WowThemes.net and Alanta
+                        <a target="_blank" href="https://github.com/alanta/Memoirs-Theme">Memoirs Statiq Kontent Theme</a> by WowThemes.net and Alanta
                     </div>
                 </div>
             </div>
@@ -130,18 +130,16 @@
     <!-- Scripts (if you need bootstrap.js, please add it yourself. I didn't use it for performance reasons, it was not needed in this theme)
     ================================================== -->
 
-    <script src="@IExecutionContext.Current.GetLink("/assets/js/prism.js")"></script>
+    <script src="@Html.GetLink("/assets/js/prism.js")"></script>
 
-    <script src="@IExecutionContext.Current.GetLink("/assets/js/theme.js")"></script>
+    <script src="@Html.GetLink("/assets/js/theme.js")"></script>
 
     @if (site.LazyImages)
     {
-<script src="@IExecutionContext.Current.GetLink("/assets/js/lazyload.js")"></script>
+<script src="@Html.GetLink("/assets/js/lazyload.js")"></script>
 }
 
-    @if (ViewBag.Layout == "post")
-    {
-<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>}
+    @RenderSection("footerScripts", false);
 
 </body>
 </html>

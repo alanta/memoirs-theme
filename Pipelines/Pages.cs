@@ -7,7 +7,6 @@ using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
 using Statiq.SearchIndex;
-using System.Linq;
 
 namespace Kentico.Kontent.Statiq.Lumen.Pipelines
 {
@@ -15,12 +14,13 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
     {
         public Pages(IDeliveryClient deliveryClient, SiteSettings site)
         {
-            InputModules = new ModuleList{
+            InputModules = new ModuleList
+            {
                 new Kontent<Page>(deliveryClient)
                     .OrderBy(Post.TitleCodename, SortOrder.Descending)
                     .WithQuery(new DepthParameter(2), new IncludeTotalCountParameter()),
-                new SetDestination(KontentConfig.Get((Page page)  => new NormalizedPath(page.Url))),
-                new SetMetadata(SearchIndex.SearchItemKey, Config.FromDocument((doc,ctx)=>
+                new SetDestination(KontentConfig.Get((Page page) => new NormalizedPath(page.Url))),
+                new SetMetadata(SearchIndex.SearchItemKey, Config.FromDocument((doc, ctx) =>
                 {
                     var page = doc.AsKontent<Page>();
                     return new LunrIndexDocItem(doc, page.Title, page.Body)
@@ -31,17 +31,21 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                 })),
             };
 
-            ProcessModules = new ModuleList {
-                new MergeContent(new ReadFiles(patterns: "Page.cshtml") ),
+            ProcessModules = new ModuleList
+            {
+                new MergeContent(new ReadFiles(patterns: "Page.cshtml")),
                 new RenderRazor()
-                    .WithViewData("SiteMetadata", site )
+                    .WithViewData("SiteMetadata", site)
                     .WithModel(KontentConfig.As<Page>()),
                 new KontentImageProcessor()
             };
 
-            OutputModules = new ModuleList {
+            OutputModules = new ModuleList
+            {
                 new WriteFiles(),
             };
         }
     }
 }
+
+    

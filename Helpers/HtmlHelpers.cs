@@ -3,6 +3,7 @@ using Kentico.Kontent.ImageTransformation;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Statiq.Common;
 using System.Collections.Generic;
 using System.Linq;
 using IHtmlContent = Microsoft.AspNetCore.Html.IHtmlContent;
@@ -11,6 +12,12 @@ namespace MemoirsTheme.Helpers
 {
     public static class HtmlHelpers
     {
+        public static string GetLink(this IHtmlHelper html, string relativeUri, bool includeHost = false)
+        {
+            var context = html.ViewData["StatiqExecutionContext"] as IExecutionContext;
+            return context.GetLink(relativeUri, includeHost);
+        }
+
         public static IHtmlContent Image(this IHtmlHelper html, IEnumerable<IAsset> assets, string? description = null, bool lazy = false,
             int? width = null, int? height = null, ImageFitMode? fit = null, object? htmlAttributes = null)
         {

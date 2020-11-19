@@ -1,9 +1,9 @@
 @using Kentico.Kontent.Statiq.Memoirs.Models
 @model Kentico.Kontent.Statiq.Memoirs.Models.Post
-@{ 
+@{
+    var site = ViewData["SiteMetaData"] as SiteSettings;
     var author = Model.Author.OfType<Author>().FirstOrDefault();
-    ViewData["Author"] = author;
-}
+                ViewData["Author"] = author; }
 <div class="entry-header">
     <!-- Post Title -->
     <h1 class="posttitle">@Model.Title</h1>
@@ -14,11 +14,10 @@
     <div>
         @if (author.AvatarImage?.Any() ?? false)
         {
-            <img class="author-thumb" src="@author.AvatarImage.First().Url?w=250&h=250" alt="@author.Name"> }
-        else
-        {
-            <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="@author.Name">
-        }
+<img class="author-thumb" src="@author.AvatarImage.First().Url?w=250&h=250" alt="@author.Name"> }
+else
+{
+<img class="author-thumb" src="https://www.gravatar.com/avatar/@author.Gravatar?s=250&d=mm&r=x" alt="@author.Name">}
     </div>
     <div>
         Written by <span class="text-dark">@author.Name</span> on
@@ -40,17 +39,17 @@
 @if (Model.Rating.HasValue)
 {
 <div class="rating mt-4 mb-4 d-flex align-items-center">
-    <strong class="mr-1">Rating:</strong> <partial name="Shared/star_rating" model="Model.Rating.Value"/>
+    <strong class="mr-1">Rating:</strong> <partial name="Shared/star_rating" model="Model.Rating.Value" />
 </div>}
 
 <!-- Author Box if enabled from _config.yml -->
-<partial name="Shared/author-box" model="author"/>
+<partial name="Shared/author-box" model="author" />
 
 <!-- Comments if not disabled with comments: false -->
 {% include comments.html %}
 
 <!-- Share -->
-<partial name="Shared/share" model="Model"/>
+<partial name="Shared/share" model="Model" />
 
 <!-- Related Post -->
 {% include related-posts.html %}
@@ -72,7 +71,7 @@ https://search.google.com/structured-data/testing-tool/u/0/
     "type": "Person",
     "name": "@author.Name"
     },
-    "datePublished": "@Model.PostDate.Value.ToString("yyyy-MM-dd")",
+    "datePublished": "@Model.PostDate?.ToString("yyyy-MM-dd")",
     "reviewRating": {
     "type": "Rating",
     "ratingValue": "@Model.Rating",
@@ -80,3 +79,13 @@ https://search.google.com/structured-data/testing-tool/u/0/
     }
     }
 </script>}
+@section footerScripts{
+@if (Model.Comments())
+{
+    if (string.IsNullOrWhiteSpace(site.DisqussId))
+    {
+        throw new InvalidOperationException("Please configure the DisqussId in the site setting before enabling comments.");
+    }
+<script id="dsq-count-scr" src="//@(site.DisqussId).disqus.com/count.js"></script>
+}
+}
