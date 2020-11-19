@@ -1,10 +1,14 @@
+@using Statiq.Common
 @model MemoirsTheme.Models.IPagedContent
+@{
+    var context = ViewData["StatiqExecutionContext"] as IExecutionContext;
+}
 @if (Model.TotalItems > 1)
 {
     <div class="pagination">
         @if (Model.PreviousUrl != null)
         {
-            <a class="ml-1 mr-1" href="@Model.PreviousUrl">&laquo; </a>
+            <a class="ml-1 mr-1" href="@context.GetLink(Model.PreviousUrl)">&laquo; </a>
         }
         else
         {
@@ -16,12 +20,12 @@
             <span class="ml-1 mr-1">@(index.ToString())</span>
             }
             else {
-                <a class="ml-1 mr-1" href="@Model.PagingUrl(index)">@index</a>
+                <a class="ml-1 mr-1" href="@context.GetLink(Model.PagingUrl(index))">@index</a>
             }
         }
 
         @if(Model.NextUrl != null){
-        <a class="ml-1 mr-1" href="@Model.NextUrl"> &raquo;</a>
+        <a class="ml-1 mr-1" href="@context.GetLink(Model.NextUrl)"> &raquo;</a>
         }else{
         <span> &raquo;</span>
         }
