@@ -1,4 +1,5 @@
 @using Kentico.Kontent.Statiq.Memoirs.Models
+@using System.Globalization
 @model Kentico.Kontent.Statiq.Memoirs.Models.Post
 @{
     var site = ViewData["SiteMetaData"] as SiteSettings;
@@ -54,8 +55,7 @@ else
 <!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first:
 https://search.google.com/structured-data/testing-tool/u/0/
 ================================================== -->
-@if (Model.Rating.HasValue)
-{
+@if (Model.Rating.HasValue){
 <script type="application/ld+json">
     {
     "context": "http://schema.org/",
@@ -71,11 +71,12 @@ https://search.google.com/structured-data/testing-tool/u/0/
     "datePublished": "@Model.PostDate?.ToString("yyyy-MM-dd")",
     "reviewRating": {
     "type": "Rating",
-    "ratingValue": "@Model.Rating",
+    "ratingValue": "@Model.Rating?.ToString("N2", CultureInfo.InvariantCulture)",
     "bestRating": "5"
     }
     }
-</script>}
+</script>
+}
 @section footerScripts{
 @if (Model.Comments())
 {

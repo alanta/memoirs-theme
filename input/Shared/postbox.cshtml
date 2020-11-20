@@ -1,6 +1,5 @@
 @using Kentico.Kontent.ImageTransformation
 @using Kentico.Kontent.Statiq.Memoirs.Models
-@using MemoirsTheme.Helpers
 @model Kentico.Kontent.Statiq.Memoirs.Models.Post
 @{ var site = ViewData["SiteMetadata"] as SiteSettings;
     Author author = Model.Author.OfType<Author>().FirstOrDefault();

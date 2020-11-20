@@ -2,7 +2,7 @@
 @using System.Web
 @model Kentico.Kontent.Statiq.Memoirs.Models.IPageMetadata
 @{
-    var url = IExecutionContext.Current.GetLink(Model.Url, true);
+    var url = Html.GetLink(Model.Url, true);
 }
 <div class="share">
     <p>
