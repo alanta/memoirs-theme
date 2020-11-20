@@ -1,0 +1,13 @@
+@using Kentico.Kontent.Statiq.Memoirs.Models
+@using Kontent.Statiq
+@model ILookup<Kentico.Kontent.Delivery.Abstractions.ITaxonomyTerm,Statiq.Common.IDocument>
+    @foreach (var category in Model)
+    {
+        <h4 class="mt-5 mb-neg-30" id="@category.Key.Codename"><span class="text-capitalize badge badge-primary text-small">@category.Key.Name</span></h4>
+        <div class="blog-grid-container">
+            @foreach (var doc in category.Select(item => item.AsKontent<Post>()))
+            {
+                <partial name="Shared/postbox" model="doc"/>
+            }
+        </div>
+    }

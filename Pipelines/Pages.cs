@@ -3,14 +3,13 @@ using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
 using MemoirsTheme.Modules;
-using MemoirsTheme.Pipelines;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
 using Statiq.SearchIndex;
 using System.Linq;
 
-namespace Kentico.Kontent.Statiq.Lumen.Pipelines
+namespace MemoirsTheme.Pipelines
 {
     public class Pages : Pipeline
     {
@@ -22,9 +21,9 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                     .OrderBy(Post.TitleCodename, SortOrder.Descending)
                     .WithQuery(new DepthParameter(2), new IncludeTotalCountParameter()),
                 new SetMetadata(nameof(Page.Tags),
-                    KontentConfig.Get<Page,string[]>(post => post.Tags?.Select(t => t.Codename).ToArray())),
+                    KontentConfig.Get<Page,ITaxonomyTerm[]>(post => post.Tags?.ToArray())),
                 new SetMetadata(nameof(Page.Categories),
-                    KontentConfig.Get<Page,string[]>(post => post.Categories?.Select(t => t.Codename).ToArray())),
+                    KontentConfig.Get<Page,ITaxonomyTerm[]>(post => post.Categories?.ToArray())),
                 new SetDestination(KontentConfig.Get((Page page) => new NormalizedPath(page.Url))),
                 new SetMetadata(SearchIndex.SearchItemKey, Config.FromDocument((doc, ctx) =>
                 {

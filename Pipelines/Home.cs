@@ -1,5 +1,4 @@
-﻿using Kentico.Kontent.Statiq.Lumen.Pipelines;
-using Kentico.Kontent.Statiq.Memoirs.Models;
+﻿using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
 using MemoirsTheme.Models;
 using Statiq.Common;

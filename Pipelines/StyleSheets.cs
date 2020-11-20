@@ -3,7 +3,7 @@ using Statiq.Common;
 using Statiq.Core;
 using Statiq.Sass;
 
-namespace Kentico.Kontent.Statiq.Lumen.Pipelines
+namespace MemoirsTheme.Pipelines
 {
     public class StyleSheets : Pipeline
     {

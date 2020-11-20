@@ -16,13 +16,13 @@
     <!-- Categories -->
     @foreach (var category in Model.Categories.OrderBy(c => c.Name))
     {
-        <a class="smoothscroll badge badge-primary text-capitalize" href="@Html.GetLink($"/categories#{category.Codename}")">@category.Name</a>
+        <a class="smoothscroll badge badge-primary text-capitalize" href="@Html.GetLink($"/categories")#@category.Codename">@category.Name</a>
     }
 
     <!-- Tags -->  
     @foreach (var tag in Model.Tags.OrderBy(c => c.Name))
     {
-        <a class="smoothscroll badge badge-primary text-capitalize" href="@Html.GetLink($"/tags#{tag.Codename}")">@tag.Name</a>
+        <a class="smoothscroll badge badge-primary text-capitalize" href="@Html.GetLink($"/tags")#@(tag.Codename)">@tag.Name</a>
     }
 
     </div>
