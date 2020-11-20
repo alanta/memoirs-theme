@@ -12,5 +12,6 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models{
         public string DisqusId { get; set; }
         public string ContactFormUrl { get; set; }
         public string? GoogleAnalytics { get; set; }
+        public bool OptimizeOutput { get; set; } = true;
     }
 }

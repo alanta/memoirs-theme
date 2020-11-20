@@ -44,7 +44,13 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                     .WithViewData("SiteMetadata", site )
                     .WithModel(KontentConfig.As<Post>()),
                 new KontentImageProcessor(),
-                new OptimizeHtml()
+                new OptimizeHtml(site.OptimizeOutput)
+                    .WithSettings(settings =>
+                    {
+                        // conflicts with ratings
+                        settings.RemoveScriptStyleTypeAttribute = false;
+                        settings.MinifyJs = false; 
+                    })
             };
 
             OutputModules = new ModuleList {
