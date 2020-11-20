@@ -1,5 +1,6 @@
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
+using MemoirsTheme.Modules;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
@@ -19,7 +20,8 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
             ProcessModules = new ModuleList {
                 new RenderRazor()
                     .WithViewData("SiteMetadata", site ),
-                new KontentImageProcessor()
+                new KontentImageProcessor(),
+                new OptimizeHtml()
             };
 
             OutputModules = new ModuleList {

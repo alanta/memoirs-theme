@@ -2,6 +2,7 @@ using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
+using MemoirsTheme.Modules;
 using MemoirsTheme.Pipelines;
 using Statiq.Common;
 using Statiq.Core;
@@ -42,7 +43,8 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                     .WithViewData("Author", KontentConfig.Get<Post,Author>( p => p.Author.OfType<Author>().FirstOrDefault() ))
                     .WithViewData("SiteMetadata", site )
                     .WithModel(KontentConfig.As<Post>()),
-                new KontentImageProcessor()
+                new KontentImageProcessor(),
+                new OptimizeHtml()
             };
 
             OutputModules = new ModuleList {

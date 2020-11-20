@@ -2,6 +2,7 @@ using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
+using MemoirsTheme.Modules;
 using MemoirsTheme.Pipelines;
 using Statiq.Common;
 using Statiq.Core;
@@ -43,7 +44,8 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
                     .WithViewData("Title", KontentConfig.Get<Page,string>( p => p.Title ))
                     .WithViewData("SiteMetadata", site)
                     .WithModel(KontentConfig.As<Page>()),
-                new KontentImageProcessor()
+                new KontentImageProcessor(),
+                new OptimizeHtml()
             };
 
             OutputModules = new ModuleList
