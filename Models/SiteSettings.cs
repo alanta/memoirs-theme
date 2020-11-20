@@ -10,5 +10,7 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models{
         public string Copyright { get; set; }
         public bool AuthorBox { get; set; }
         public string DisqusId { get; set; }
+        public string ContactFormUrl { get; set; }
+        public string? GoogleAnalytics { get; set; }
     }
 }

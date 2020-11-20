@@ -38,7 +38,7 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
 
             ProcessModules = new ModuleList
             {
-                new MergeContent(new ReadFiles(patterns: "Page.cshtml")),
+                new MergeContent(new ReadFiles( KontentConfig.Get<Page,string>( ViewForPage))),
                 new RenderRazor()
                     .WithViewData("Title", KontentConfig.Get<Page,string>( p => p.Title ))
                     .WithViewData("SiteMetadata", site)
@@ -49,6 +49,15 @@ namespace Kentico.Kontent.Statiq.Lumen.Pipelines
             OutputModules = new ModuleList
             {
                 new WriteFiles(),
+            };
+        }
+
+        public string ViewForPage(Page page)
+        {
+            return page.System.Codename switch
+            {
+                "contact" => "Contact.cshtml",
+                _ => "Page.cshtml"
             };
         }
     }

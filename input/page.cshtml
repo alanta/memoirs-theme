@@ -8,7 +8,13 @@
 <partial name="Shared/_featured-image" model="Model.Image"/>
 
 <!-- Content -->
-<partial name="Shared/_article" model="Model" />
+<partial name="Shared/_article" model="Model"/>
+
+@if (Model.System.Codename == "contact")
+{
+    // render contact form
+    <partial name="Shared/contact"/>
+}
 
 <!-- Comments if not disabled with comments: false -->
-{% include comments.html %}
+<partial name="Shared/comments" model="Model"/>
