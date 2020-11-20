@@ -1,6 +1,7 @@
 ﻿using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using System.Linq;
+using System.Web;
 
 namespace MemoirsTheme.Resolvers
 {
@@ -8,7 +9,7 @@ namespace MemoirsTheme.Resolvers
     {
         public string Resolve(CodeSnippet data)
         {
-            return $"<pre><code class=\"language-{data.Language.First().Codename}\">{data.Code}</code></pre>";
+            return $"<pre><code class=\"language-{data.Language.First().Codename}\">{HttpUtility.HtmlEncode(data.Code)}</code></pre>";
         }
     }
 }

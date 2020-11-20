@@ -26,6 +26,8 @@ namespace MemoirsTheme
                     services.AddSingleton<ITypeProvider, CustomTypeProvider>();
                     services.AddDeliveryInlineContentItemsResolver(new CodeSnippetResolver());
                     services.AddDeliveryInlineContentItemsResolver(new GitHubGistResolver());
+                    services.AddDeliveryInlineContentItemsResolver(new SpoilerResolver());
+                    services.AddDeliveryInlineContentItemsResolver(new QuoteResolver());
                     services.AddDeliveryClient((IConfiguration)settings);
                 })
                 .AddHostingCommands()

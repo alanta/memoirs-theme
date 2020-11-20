@@ -15,7 +15,9 @@ namespace Kentico.Kontent.Statiq.Memoirs.Models
             {typeof(GithubGist), "github_gist"},
             {typeof(Home), "home"},
             {typeof(Page), "page"},
-            {typeof(Post), "post"}
+            {typeof(Post), "post"},
+            {typeof(Quote), "quote"},
+            {typeof(Spoiler), "spoiler"}
         };
 
         public Type GetType(string contentType)
