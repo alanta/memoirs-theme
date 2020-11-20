@@ -1,7 +1,7 @@
 @using System.Globalization
 @model decimal
 <div class="rating-holder">
-<div class="c-rating c-rating--regular" data-rating-value="@Model.ToString("F1", CultureInfo.InvariantCulture)">
+<div class="c-rating c-rating--regular" data-rating-value="@Model.ToString("N2", CultureInfo.InvariantCulture)">
   <button>1</button>
   <button>2</button>
   <button>3</button>
