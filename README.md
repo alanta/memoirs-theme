@@ -8,7 +8,8 @@ This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](ht
   * Quotes, Spoilers (blurring)
   * GitHub Gists
   * Code snippets with [Prism.js](https://prismjs.com/)
-  * Related pages, Tags and Categories
+  * Related pages
+  * Taxonomy : Tags and Categories
   * Ratings
   * Contact form using [Formspree](https://formspree.io/)
   * Comments with [Disqus](https://disqus.com/)
@@ -16,6 +17,7 @@ This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](ht
 * SEO support _TODO_
 * Google Analytics
 * Search with pre-compiled Lunr index
+* Atom and RSS feeds
 * HTML minification with [NUglify](https://github.com/trullock/NUglify)
 
 ## Credits 
