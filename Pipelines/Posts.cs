@@ -2,6 +2,7 @@ using Kentico.Kontent.Delivery.Abstractions;
 using Kentico.Kontent.Delivery.Urls.QueryParameters;
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
+using MemoirsTheme.Models;
 using MemoirsTheme.Modules;
 using Statiq.Common;
 using Statiq.Core;
@@ -15,6 +16,7 @@ namespace MemoirsTheme.Pipelines
     {
         public Posts(IDeliveryClient deliveryClient, SiteSettings site)
         {
+            Dependencies.Add(nameof(Seo));
             InputModules = new ModuleList{
                 new Kontent<Post>(deliveryClient)
                     .OrderBy(Post.PostDateCodename, SortOrder.Descending)
@@ -38,6 +40,14 @@ namespace MemoirsTheme.Pipelines
             ProcessModules = new ModuleList {
                 new MergeContent(new ReadFiles(patterns: "Post.cshtml") ),
                 new RenderRazor()
+                    .WithViewData( "SEO", Config.FromDocument((doc, ctx) =>
+                    {
+                        var home = ctx.Outputs.FromPipeline(nameof(Seo)).First().AsKontent<Kentico.Kontent.Statiq.Memoirs.Models.Home>();
+                        var post = doc.AsKontent<Post>();
+
+                        return new SocialSharingMetadata(home, post);
+
+                    }) )
                     .WithViewData("Title", KontentConfig.Get<Post,string>( p => p.Title ))
                     .WithViewData("Author", KontentConfig.Get<Post,Author>( p => p.Author.OfType<Author>().FirstOrDefault() ))
                     .WithViewData("SiteMetadata", site )

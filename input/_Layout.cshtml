@@ -1,8 +1,10 @@
 ﻿@using Kentico.Kontent.Statiq.Memoirs.Models
+@using MemoirsTheme.Models
 @{ var site = ViewBag.SiteMetadata as SiteSettings;
-    var author = ViewBag.Author as Author;
-    var name = author?.Name ?? "John Doe";
-    var isHome = ViewBag.IsHome ?? false; }
+    var isHome = ViewBag.IsHome ?? false;
+    var seo = ViewData["SEO"] as SocialSharingMetadata;
+    
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +16,13 @@
     <title>@ViewBag.Title | @site.Name</title>
 
     @RenderSection("seo", required: false)
+    @if (!IsSectionDefined("seo"))
+    {
+        @if (seo != null)
+        {
+            <partial name="Shared/_SocialSharingMetadata" model="seo"/>
+        }
+    }
 
     <link href="@Html.GetLink("/assets/css/prism.css")" rel="stylesheet">
 

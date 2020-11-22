@@ -1,0 +1,45 @@
+﻿@model MemoirsTheme.Models.SocialSharingMetadata
+<meta property="og:type" content="website" />
+<meta property="og:url" content="@Model.Url">
+<meta property="og:title" content="@Model.Title">
+<meta property="og:description" content="@Model.Description">
+<meta name="twitter:card" content="@Model.TwitterCard">
+@if (!string.IsNullOrWhiteSpace(@Model.TwitterCreator))
+{
+    <meta name="twitter:site" content="@Model.TwitterSite"/>
+}
+@if (!string.IsNullOrWhiteSpace(@Model.TwitterCreator))
+{
+    <meta name="twitter:creator" content="@Model.TwitterCreator" />
+}
+
+@if (Model.Image != null)
+{
+    // https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards
+    // summary_large_image aspect 2:1, min 300x157 max 4096x4096
+    // summary aspect 1:1, min 144x144 max maximum of 4096x4096 pixels
+
+    var width = 800;
+    var height = 800;
+
+    <meta property="og:image" content="@Model.Image.Url?w=@width&h=@height&fit=crop">
+    <meta property="og:image:alt" content="@Model.Image.Description" />
+    <meta property="og:image:width" content="@width" />
+    <meta property="og:image:height" content="@height" />
+    <meta property="og:image:type" content="@Model.Image.Type" />
+}
+
+@if (Model.TwitterImage != null)
+{
+    // https://ogp.me/
+    // summary_large_image aspect 2:1, min 300x157 max 4096x4096
+    // summary aspect 1:1, min 144x144 max maximum of 4096x4096 pixels
+    var (height, width) = Model.TwitterCard switch
+    {
+        "summary_large_image" => (height: 500, width: 1000),
+        _ => (height: 500, width: 500)
+    };
+
+    <meta name="twitter:image" content="@Model.TwitterImage.Url?w=@width&h=@height&fit=crop">
+    <meta name="twitter:image:alt" content="@Model.TwitterImage.Description" />
+}

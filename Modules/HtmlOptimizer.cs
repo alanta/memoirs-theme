@@ -45,6 +45,11 @@ namespace MemoirsTheme.Modules
 
         protected override async Task<IEnumerable<IDocument>> ExecuteInputAsync(IDocument input, IExecutionContext context)
         {
+            if (!_enabled)
+            {
+                return (input).Yield(); // nothing to do, return original document
+            }
+
             var original = await input.GetContentStringAsync();
             if (string.IsNullOrWhiteSpace(original))
             {
