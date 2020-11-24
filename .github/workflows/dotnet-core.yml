@@ -16,7 +16,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: 3.1.401
     - name: Install dependencies
       run: dotnet restore
     - name: Build
@@ -31,7 +31,7 @@ jobs:
         name: "Generator"
         path: ./tools
     - name: Publish
-      run: dotnet run --configuration Release  
+      run: dotnet run --configuration Release  -- -l Debug
       env:
         LinkRoot: ${{ secrets.LINKROOT }} # Fix subfolder links https://statiq.dev/framework/configuration/settings
         Host:  ${{ secrets.HOST }} # Make links absolute (for feeds, OG...)
