@@ -2,6 +2,8 @@
 
 This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](https://statiq.dev/) using [Kontent.Statiq](https://github.com/alanta/Kontent.Statiq).
 
+![memoirs](https://bootstrapstarter.com/assets/img/themes/memoirs-jekyll.jpg)
+
 ## Features
 
 * Posts & Pages with
@@ -28,7 +30,7 @@ This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](ht
 
 ### Clone the codebase
 
-1. Click the ["Use this template"](https://github.com/Kontent/statiq-starter-kontent-lumen/generate) button to [create your own repository from this template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
+1. Click the ["Use this template"](https://github.com/alanta/memoirs-theme/generate) button to [create your own repository from this template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
 
 ### Running locally
 
@@ -68,7 +70,7 @@ This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](ht
 - Enable GitHub actions in your repo
 - Copy the [`.github/workflows/dotnet-core.yml`](https://github.com/alanta/memoirs-theme/blob/master/.github/workflows/dotnet-core.yml) to your project
 - Go to the repository secrets and set:
-  - [`LinkRoot`](https://statiq.dev/framework/configuration/settings) to the relative path of your project (e.g. `/statiq-starter-kontent-lumen`) - this is to ensure that all links work properly when deployed to a subfolder
+  - [`LinkRoot`](https://statiq.dev/framework/configuration/settings) to the relative path of your project (e.g. `/memoirs-theme`) - this is to ensure that all links work properly when deployed to a subfolder
   - [`Host`](https://statiq.dev/framework/configuration/settings) to the domain of your project (e.g. `domain.tld`) - this is to ensure that absolute links are generated where required
 
 ## Customizing
@@ -81,6 +83,4 @@ This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](ht
 ## Credits 
 
 This theme was adopted from the Memoirs Jekyl theme by [Wowthemes](https://bootstrapstarter.com/bootstrap-templates/jekyll-theme-memoirs/). Please [buy them coffee](https://www.wowthemes.net/donate/)!
-
-![memoirs](https://bootstrapstarter.com/assets/img/themes/memoirs-jekyll.jpg)
 
