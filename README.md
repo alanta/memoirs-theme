@@ -2,7 +2,7 @@
 
 This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](https://statiq.dev/) using [Kontent.Statiq](https://github.com/alanta/Kontent.Statiq). Check out the [live demo](https://alanta.github.io/memoirs-theme/).
 
-![memoirs](https://raw.githubusercontent.com/alanta/memoirs-theme/screenshot.jpg)
+![memoirs](https://github.com/alanta/memoirs-theme/raw/main/screenshot.jpg)
 
 ## Features
 
