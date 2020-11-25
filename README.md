@@ -1,6 +1,6 @@
 ﻿# Memoirs Statiq Kontent Theme
 
-This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](https://statiq.dev/) using [Kontent.Statiq](https://github.com/alanta/Kontent.Statiq).
+This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](https://statiq.dev/) using [Kontent.Statiq](https://github.com/alanta/Kontent.Statiq). Check out the [live demo](https://alanta.github.io/memoirs-theme/).
 
 ![memoirs](https://bootstrapstarter.com/assets/img/themes/memoirs-jekyll.jpg)
 
