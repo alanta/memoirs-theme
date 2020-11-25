@@ -44,7 +44,7 @@ namespace MemoirsTheme.Modules
 
                     documents.Add(id, new 
                     {
-                        url = searchItem.GetLink(context, false)+".html",
+                        url = searchItem.GetLink(context, false),
                         title = searchItem.Title,
                         body = searchItem.Description
                     });
