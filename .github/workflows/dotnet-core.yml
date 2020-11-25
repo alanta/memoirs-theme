@@ -41,7 +41,7 @@ jobs:
         name: "Site"
         path: ./output     
     - name: Deploy 🚀
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       uses: JamesIves/github-pages-deploy-action@3.6.2
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
