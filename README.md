@@ -2,7 +2,7 @@
 
 This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](https://statiq.dev/) using [Kontent.Statiq](https://github.com/alanta/Kontent.Statiq). Check out the [live demo](https://alanta.github.io/memoirs-theme/).
 
-![memoirs](https://bootstrapstarter.com/assets/img/themes/memoirs-jekyll.jpg)
+![memoirs](https://raw.githubusercontent.com/alanta/memoirs-theme/screenshot.jpg)
 
 ## Features
 
@@ -83,4 +83,5 @@ This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](ht
 ## Credits 
 
 This theme was adopted from the Memoirs Jekyl theme by [Wowthemes](https://bootstrapstarter.com/bootstrap-templates/jekyll-theme-memoirs/). Please [buy them coffee](https://www.wowthemes.net/donate/)!
+It uses additional images from [Pexels](https://pexels.com).
 
