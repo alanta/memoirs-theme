@@ -18,7 +18,7 @@ namespace MemoirsTheme.Pipelines
                 new ReplaceDocuments(Dependencies.ToArray()),
                 new PaginateDocuments(6),
                 new SetDestination(Config.FromDocument((doc, ctx) => Filename(doc))),
-                new MergeContent(new ReadFiles(patterns: "Index.cshtml")),
+                new MergeContent(new ReadFiles(patterns: "index.cshtml")),
                 new RenderRazor()
                     .WithViewData("Title", "Home")
                     .WithViewData("SiteMetaData", site)

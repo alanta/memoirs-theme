@@ -15,6 +15,11 @@ namespace MemoirsTheme.Modules
 
         protected override async Task<IEnumerable<IDocument>> ExecuteContextAsync(IExecutionContext context)
         {
+            if (context.Inputs.Length == 0)
+            {
+                throw new InvalidOperationException($"No input documents available. Cannot build a search index for pipeline {context.PipelineName}");
+            }
+
             var documents = new Dictionary<string,object>();
 
             Index idx = await Index.Build(async builder =>

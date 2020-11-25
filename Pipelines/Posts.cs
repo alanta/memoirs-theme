@@ -38,7 +38,7 @@ namespace MemoirsTheme.Pipelines
             };
 
             ProcessModules = new ModuleList {
-                new MergeContent(new ReadFiles(patterns: "Post.cshtml") ),
+                new MergeContent(new ReadFiles(patterns: "post.cshtml") ),
                 new RenderRazor()
                     .WithViewData( "SEO", Config.FromDocument((doc, ctx) =>
                     {

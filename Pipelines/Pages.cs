@@ -40,7 +40,7 @@ namespace MemoirsTheme.Pipelines
 
             ProcessModules = new ModuleList
             {
-                new MergeContent(new ReadFiles( KontentConfig.Get<Page,string>( ViewForPage))),
+                new MergeContent(new ReadFiles( "page.cshtml")),
                 new RenderRazor()
                     .WithViewData( "SEO", Config.FromDocument((doc, ctx) =>
                     {
@@ -60,15 +60,6 @@ namespace MemoirsTheme.Pipelines
             OutputModules = new ModuleList
             {
                 new WriteFiles(),
-            };
-        }
-
-        public string ViewForPage(Page page)
-        {
-            return page.System.Codename switch
-            {
-                "contact" => "Contact.cshtml",
-                _ => "Page.cshtml"
             };
         }
     }
