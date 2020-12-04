@@ -11,7 +11,7 @@
          }*/
         <div class="toc mt-4 mb-4 lead">
         <h3 class="font-weight-bold">Summary</h3>
-        <partial name="toc" model="Model.Body"/>
+        @Html.TableOfContents(Model.Body)
     </div>
     }
     <!-- End Toc -->

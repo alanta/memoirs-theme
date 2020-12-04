@@ -15,7 +15,7 @@ This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](ht
   * Ratings
   * Contact form using [Formspree](https://formspree.io/)
   * Comments with [Disqus](https://disqus.com/)
-  * Table of contents generated from HTML _TODO_
+  * Table of contents generated from HTML
 * SEO support: open graph & twitter cards
 * Google Analytics
 * Search with pre-compiled Lunr index
