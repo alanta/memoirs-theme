@@ -7,7 +7,6 @@ using MemoirsTheme.Modules;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Razor;
-using Statiq.SearchIndex;
 using System.Linq;
 
 namespace MemoirsTheme.Pipelines

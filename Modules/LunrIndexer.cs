@@ -1,6 +1,5 @@
 ﻿using MemoirsTheme.Pipelines;
 using Statiq.Common;
-using Statiq.SearchIndex;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -34,7 +33,7 @@ namespace MemoirsTheme.Modules
 
                 foreach (IDocument doc in context.Inputs)
                 {
-                    var searchItem = doc[SearchIndex.SearchItemKey] as ILunrIndexItem;
+                    var searchItem = doc[SearchIndex.SearchItemKey] as LunrIndexDocItem;
                     if (searchItem == null)
                         continue;
 
@@ -62,8 +61,8 @@ namespace MemoirsTheme.Modules
                 }
             });
 
-            return new[] { (await context.CreateDocumentAsync(destination: "index.js", 
-                $@"var documents={System.Text.Json.JsonSerializer.Serialize(documents)};{Environment.NewLine}var data='{idx.ToJson()}';{Environment.NewLine}")) };
+            return new[] { context.CreateDocument(destination: "index.js", 
+                $@"var documents={System.Text.Json.JsonSerializer.Serialize(documents)};{Environment.NewLine}var data='{idx.ToJson()}';{Environment.NewLine}") };
 
         }
     }

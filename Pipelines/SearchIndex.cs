@@ -1,7 +1,6 @@
 ﻿using MemoirsTheme.Modules;
 using Statiq.Common;
 using Statiq.Core;
-using Statiq.SearchIndex;
 using System.Linq;
 using Pipeline = Statiq.Core.Pipeline;
 
@@ -9,7 +8,7 @@ namespace MemoirsTheme.Pipelines
 {
     public class SearchIndex : Pipeline
     {
-        public const string SearchItemKey = GenerateLunrIndexKeys.LunrIndexItem;
+        public const string SearchItemKey = "SearchItem";
         public SearchIndex()
         {
             Dependencies.AddRange(nameof(Posts));

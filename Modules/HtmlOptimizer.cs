@@ -80,9 +80,7 @@ namespace MemoirsTheme.Modules
             }
 
             context.LogInformation(input, $"Content minified by {minifiedContent.Code.Length*100M/original.Length:N2}%");
-            return (await input.CloneAsync(content: minifiedContent.Code)).Yield();
-
-
+            return (input.Clone(content: minifiedContent.Code)).Yield();
         }
     }
 }
