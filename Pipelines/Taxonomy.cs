@@ -1,6 +1,4 @@
-﻿using Kentico.Kontent.Delivery.Abstractions;
-using Kentico.Kontent.Statiq.Lumen.Pipelines;
-using Kentico.Kontent.Statiq.Memoirs.Models;
+﻿using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
 using MemoirsTheme.Modules;
 using Statiq.Common;
@@ -70,23 +68,6 @@ namespace MemoirsTheme.Pipelines
                     }),
                 new WriteFiles()
             };
-        }
-
-        public class TaxonomyTermComparer : IEqualityComparer<ITaxonomyTerm>
-        {
-            public bool Equals(ITaxonomyTerm x, ITaxonomyTerm y)
-            {
-                if (ReferenceEquals(x, y)) return true;
-                if (ReferenceEquals(x, null)) return false;
-                if (ReferenceEquals(y, null)) return false;
-                if (x.GetType() != y.GetType()) return false;
-                return x.Codename == y.Codename;
-            }
-
-            public int GetHashCode(ITaxonomyTerm obj)
-            {
-                return (obj.Codename != null ? obj.Codename.GetHashCode() : 0);
-            }
         }
     }
 }
