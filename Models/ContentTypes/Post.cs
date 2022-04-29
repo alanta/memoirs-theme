@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using Kentico.Kontent.Delivery.Abstractions;
-
 namespace Kentico.Kontent.Statiq.Memoirs.Models
 {
     public partial class Post: IPageMetadata
     {
-        public string Url => $"post/{PostDate.Value.Year}/{PostDate.Value.Month:00}/{UrlSlug}.html";
+        public string Url => $"post/{PostDate?.Year ?? 0}/{(PostDate?.Month??0):00}/{UrlSlug}.html";
 
     }
 }

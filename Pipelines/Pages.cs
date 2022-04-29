@@ -1,5 +1,5 @@
 using Kentico.Kontent.Delivery.Abstractions;
-using Kentico.Kontent.Delivery.Urls.QueryParameters;
+using Kentico.Kontent.Urls.Delivery.QueryParameters;
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using Kontent.Statiq;
 using MemoirsTheme.Models;
@@ -19,8 +19,10 @@ namespace MemoirsTheme.Pipelines
             InputModules = new ModuleList
             {
                 new Kontent<Page>(deliveryClient)
-                    .OrderBy(Post.TitleCodename, SortOrder.Descending)
-                    .WithQuery(new DepthParameter(2), new IncludeTotalCountParameter()),
+                    .WithQuery(
+                        new DepthParameter(2), 
+                        new IncludeTotalCountParameter(), 
+                        new OrderParameter("elements."+Post.TitleCodename, SortOrder.Descending)),
                 new SetMetadata(nameof(Page.Tags),
                     KontentConfig.Get<Page,ITaxonomyTerm[]>(post => post.Tags?.ToArray())),
                 new SetMetadata(nameof(Page.Categories),

@@ -1,10 +1,9 @@
 ﻿using AngleSharp.Dom;
 using Kentico.Kontent.Delivery.Abstractions;
-using Kentico.Kontent.ImageTransformation;
+using Kentico.Kontent.Urls.ImageTransformation;
 using Kentico.Kontent.Statiq.Memoirs.Models;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Statiq.Common;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,7 +58,7 @@ namespace MemoirsTheme.Helpers
                 imageUrl = imageUrl.WithFitMode(fit.Value);
             }
 
-            tag.MergeAttributes(HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes), true);
+            tag.MergeAttributes(Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes), true);
 
             if (lazy)
             {
