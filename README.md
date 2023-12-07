@@ -26,7 +26,7 @@ This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](ht
 
 ### Requirements
 
-- [.NET Core 3.1](https://dotnet.microsoft.com/download)
+- [DotNet 6](https://dotnet.microsoft.com/download)
 
 ### Clone the codebase
 
@@ -48,19 +48,16 @@ This is a full featured theme for [Kontent](https://kontent.ai/) and [Statiq](ht
 1. Go to the "Project Settings", select API keys and copy the following keys for further reference
     - Project ID
     - Management API key
-1. Use the [Template Manager UI](https://kentico.github.io/kontent-template-manager/import) for importing the content from [`content.zip`](./content.zip) file and API keys from previous step. Check *Publish language variants after import* option before import.
+1. Use the [Kontent Backup Manager](https://github.com/kontent-ai/backup-manager-js) and import data to the newly created project from [`content.zip`](./content.zip) file via command line:  
+  ```sh
+  npm i -g @kentico/kontent-backup-manager
+     
+  kbm --action=restore --projectId=<Project ID> --apiKey=<Management API key> --environmentId=<Environemtn Id> --zipFilename=content
+  ```
+    
+  Go to your Kontent project and [publish all the imported items](https://docs.kontent.ai/tutorials/write-and-collaborate/publish-your-work/publish-content-items).
 
-    > Alternatively, you can use the [Kontent Backup Manager](https://github.com/Kentico/kontent-backup-manager-js) and import data to the newly created project from [`content.zip`](./content.zip) file via command line:
-    >
-    >   ```sh
-    >    npm i -g @kentico/kontent-backup-manager
-    >
-    >    kbm --action=restore --projectId=<Project ID> --apiKey=<Management API key> --zipFilename=content
-    >    ```
-    >
-    > Go to your Kontent project and [publish all the imported items](https://docs.kontent.ai/tutorials/write-and-collaborate/publish-your-work/publish-content-items).
-
-1. Map the codebase to the data source
+* Map the codebase to the data source
     - adjust the `DeliveryOptions:ProjectId` key in `appSettings.json`
 
 🚀 **You are now ready to use the site with your own Kentico Kontent project as data source!**
